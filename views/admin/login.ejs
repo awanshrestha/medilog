@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Login</title>
+</head>
+<body>
+    <h2>Admin Login</h2>
+    <form action="/admin/login" method="POST">
+        <input type="text" name="username"> Username <br> <br>
+        <input type="password" name="password"> Password <br> <br>
+        <input type="submit" value="Login">
+      
+    </form>
+    <%= error%>
+</body>
+</html>

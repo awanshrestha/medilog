@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Doctor</title>
+</head>
+<body>
+    <h2>New Doctor</h2>
+    <form action="/admin/addDoctor" method="POST">
+        <input type="text" name="doctorName" required> Name <br> <br>
+        <input type="text" name="nmc" required> NMC Number <br> <br>
+        <input type="text" name="doctorDescription" required> Description <br> <br>
+        <input type="text" name="doctorAddress" required> Address <br> <br>       
+        <input type="text" name="doctorContactNo" required> Contact Number <br> <br>
+        <input type="text" name="doctorEmail" required> Email <br> <br>
+        <input type="text" name="doctorPassword" required> Password <br> <br>
+        <input type="Reset"> <br> <br>
+        <input type="submit" value="Add Doctor">
+    </form>
+    <button style="position:absolute; bottom:50px;" onclick="window.history.back()">Back</button>
+</body>
+</html>

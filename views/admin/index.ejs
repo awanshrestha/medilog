@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hospital Admin</title>
+</head>
+<body>
+    <h2>Hospital Admin Panel</h2>
+    <a href="/admin/addPatient">Add Patient</a> <br> <br>
+    <a href="/admin/addDoctor">Add Doctor</a> <br> <br>
+    <h3>Settings</h3>
+    <h4>Add Admin</h4>
+    <form action="/admin/addAdmin" method="POST">
+        <input type="text" name="newAdmin" required> Username <br> <br>
+        <input type="password" name="adminPassword" required> Password <br> <br>
+        <input type="submit" value="Add Admin">
+    </form>
+    <h4>Reset Password</h4>
+    <form action="/admin/resetPassword" method="POST">
+        <input type="password" name="oldPassword" required> Current Password <br>  <br>
+        <input type="password" name="newPassword" required> New Password <br> <br>
+        <input type="submit" value="Reset Password">
+    </form>
+    <%= error %> <br> 
+    <a href="/admin/logout" style="position:absolute; bottom:50px;">Logout</a>
+</body>
+</html>
