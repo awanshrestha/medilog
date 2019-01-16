@@ -1,0 +1,53 @@
+.head-wrapper {
+	background-image: url(../images/hospital_tech_small.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.logo h1 {
+	text-align: right;
+	color: #0078a6;
+}
+.logo--orange { color: #f53357; }
+.logo img {
+	position: absolute;
+	top: -15px;
+	left: -0px;
+}
+nav ul { list-style: none; text-align: center; }
+nav li {
+	display: inline-block;
+	width: 48%;
+	margin-top: 10px;
+}
+nav a {
+	color: #000;
+	font-weight: 600;
+}
+nav a:hover { text-decoration: none; }
+nav .button { background-color: rgba(131, 208, 242, .7); }
+nav .button:hover { background-color: rgba(131, 208, 242, .8); }
+.login { text-align: center; margin-top: 10px; padding-bottom: 10px; }
+
+.action {
+	margin-top: 10px;
+	padding: 10px 0;
+	text-align: center;
+	color: #fff;
+	background-color: rgba(48, 48, 48, .6);
+}
+.action h2:first-child {
+	font-size: 2em;
+}
+
+.dropbtn ul {
+	display: none;
+}
+h1 { font-size: 1.875em; }
+h2 { font-size: 1.5em; }
+
+.foot-wrapper {
+	background-color: black;
+	text-align:center;
+	margin-top: 10px;
+}
+footer .button { margin: 5px auto; }

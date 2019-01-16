@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 app.set("view-engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 
 const indexRoutes = require("./routes/index");
 const adminRoutes = require("./routes/admin");

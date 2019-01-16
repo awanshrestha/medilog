@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/framazeing.css">
+	<link rel="stylesheet" href="/css/login.css" />
     <title>Add Patient</title>
 </head>
 <body>
-    <h2>New Patient</h2>
-    <form action="/admin/addPatient" method="POST">
-        <input type="text" name="patientName" required> Name <br> <br>
-        <input type="text" name="patientAge" required> Age <br> <br>
-        Gender <br> 
-        <input type="radio" name="patientGender" for="gender" value="male" id="male" ><label for="male">Male</label> <br> 
-        <input type="radio" name="patientGender" for="gender" value="female" id="female" ><label for="female">Female</label> <br> <br>
-        <input type="text" name="patientAddress" required> Address <br> <br>
-        <input type="text" name="patientContactNo" required> Contact Number <br> <br>
-        <input type="text" name="patientEmail" required> Email <br> <br>
-        <input type="text" name="patientPassword" required> Password <br> <br>
-        <input type="Reset"> <br> <br>
-        <input type="submit" value="Add Patient">
+    <div class="container">
+        <div class="login-box">
+        <h1>New Patient</h1>
+        <form action="/admin/addPatient" method="POST">
+        <input type="text" name="patientName" id="uname" required> Name <br> <br>
+        <input type="text" name="patientAge" id="age"required> Age <br> <br>
+        <label id="sex">
+            Gender <br> 
+        <p class="radio-sex"><input type="radio" name="patientGender" for="gender" value="male" id="male" ><label for="male">Male</label> </p> <br> 
+        <p class="radio-sex">
+            <input type="radio" name="patientGender" for="gender" value="female" id="female" ><label for="female">Female</label> 
+        </p>
+        </label> <br> <br>
+        <input type="text" name="patientAddress" id="address" required> Address <br> <br>
+        <input type="text" name="patientContactNo" id="contact-no"required> Contact Number <br> <br>
+        <input type="text" name="patientEmail" id="email" required> Email <br> <br>
+        <input type="text" name="patientPassword" id="pwd" required> Password <br> <br>
+        <div class="button-holder"><input type="Reset"></div> <br> <br>
+        <div class="button-holder"><input type="submit" value="Add Patient"></div>
     </form>
     <button style="position:absolute; bottom:50px;" onclick="window.history.back()">Back</button>
+        </div>
+    </div>
 </body>
 </html>

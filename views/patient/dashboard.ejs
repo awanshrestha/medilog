@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=display-width, initial-scale=1.0">
+	<title>Welcome back, Patient</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran">
+	<link rel="stylesheet" href="/css/framazeing.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+	<% include includes/navbar.ejs %>
+	<div class="page-wrapper">
+		<div class="container">
+			<main class="three-fourths column">
+				<h1 class="row">Welcome back, <span id="username">Insert Username</span></h1>
+				<div class="row">
+					<section class="one-third column">
+						<h2>Blood Test</h2>
+						<p>Insert blood test report here</p>
+					</section>
+					<section class="one-third column">
+						<h2>Blood Pressure</h2>
+						<p>Insert blood pressure report</p>
+					</section>
+					<section class="one-third column">
+						<h2>Heart Rate</h2>
+						<p>Insert heart rate report</p>
+					</section>
+				</div>
+				<div class="row">
+					<section class="one-half column">
+						<h2>Current Medication</h2>
+						<p>Your are taking these medicines.</p>
+					</section>
+					<section class="one-half column">
+						<h2>Next Appointment</h2>
+						<p>You are to meet Dr. Lorem Ipsum next.</p>
+					</section>
+				</div>
+			</main>
+			<aside class="main-sidebar one-fourth column">
+				<section class="patient-info">
+					<img class="profile-img" alt="User profile image"
+					  src="https://img.icons8.com/color/50/000000/circled-user-male-skin-type-6.png">
+					<section class="details">
+					<h2>Patient 1</h2>
+				</section>
+				<nav class="dash-nav">
+					<ul>
+						<li><a href="#">Medical History</a></li>
+						<li><a href="#">Medicines Taken</a></li>
+					</ul>
+				</nav>
+			</aside>
+		</div>
+	</div>
+	<a href="/patient/logout" style="position:absolute; bottom:50px;" >Logout</a>
+</body>
+</html>

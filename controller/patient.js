@@ -1,10 +1,10 @@
 const md5 = require("md5");
 
 var patient = {}
-module.exports.dashboard = (req,res)=>{
+module.exports.index = (req,res)=>{
     pool.query("SELECT * FROM patient WHERE patient_id =?",[req.cookies.patientId],(error,results)=>{
         if(error) throw error;
-        patient = { print: results[0]}
+        patient = { print : results[0]}
     })
     res.render("./patient/index.ejs",patient);
 }
@@ -28,7 +28,7 @@ module.exports.postPatientLogin = (req,res)=>{
             pool.query("INSERT INTO sessions (patient_id, hash) VALUES (?,?)",[patientId, hash],(error,results)=>{
                 if(error) throw error;
             });
-            
+
             // Redirect
             res.redirect("/patient");
         }
@@ -36,7 +36,7 @@ module.exports.postPatientLogin = (req,res)=>{
             // Redirect
             res.cookie("error","Login Failed");
             res.redirect("/patient/login");
-           
+
         }
     });
 }
@@ -70,3 +70,20 @@ module.exports.postPatientLogout = (req,res)=>{
     res.clearCookie("patientHash");
     res.redirect("/patient/login");
 }
+
+module.exports.dashboard = (req,res) =>{
+    res.render("./patient/dashboard.ejs");
+}
+module.exports.patienthistory = (req,res) =>{
+  res.render("./patient/history.ejs");
+}
+module.exports.labtests = (req,res) =>{
+  res.render("./patient/labtests.ejs");
+}
+module.exports.medication = (req,res) =>{
+  res.render("./patient/medication.ejs");
+}
+module.exports.settings = (req,res) =>{
+  res.render("./patient/settings.ejs");
+}
+
