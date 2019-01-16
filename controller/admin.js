@@ -27,7 +27,7 @@ module.exports.postAdminLogin = (req,res)=>{
             pool.query("INSERT INTO sessions (admin_id, hash) VALUES (?,?)",[adminId, hash],(error,results)=>{
                 if(error) throw error;
             });
-            
+
             // Redirect
             res.redirect("/admin");
         }
@@ -35,7 +35,7 @@ module.exports.postAdminLogin = (req,res)=>{
             // Redirect
             res.cookie("error","Login Failed");
             res.redirect("/admin/login");
-           
+
         }
     });
 }
@@ -73,7 +73,7 @@ module.exports.postResetPassword = (req,res)=>{
     req.body.newPassword = md5(req.body.newPassword);
     pool.query("SELECT id FROM admin WHERE id=? AND password=? ",[req.cookies.adminId, req.body.oldPassword],(error,results)=>{
         if(error) {
-            throw error; 
+            throw error;
         }
         if(results.length > 0){
             pool.query("UPDATE admin SET password = ? WHERE id = ?",[req.body.newPassword,req.cookies.adminId],(error,results)=>{
@@ -81,7 +81,7 @@ module.exports.postResetPassword = (req,res)=>{
                 res.redirect("/admin");
             })
         }
-        else{          
+        else{
             res.cookie("error","Current Password Wrong");
             res.redirect("/admin");
         }
@@ -109,7 +109,7 @@ module.exports.getAddDoctor = (req,res)=>{
 
 module.exports.postAddPatient = (req,res)=>{
     req.body.patientPassword = md5 (req.body.patientPassword);
-    pool.query("INSERT INTO patient (name,email,password,age,gender,address,contact_no) VALUE (?,?,?,?,?,?,?)",[req.body.patientName,req.body.patientEmail,req.body.patientPassword,req.body.patientAge,req.body.patientGender,req.body.patientAddress,req.body.patientContactNo],(error,results)=>{
+    pool.query("INSERT INTO patient (name,email,password,age,gender,address,contact_no,citizenship_no) VALUE (?,?,?,?,?,?,?,?)",[req.body.patientName,req.body.patientEmail,req.body.patientPassword,req.body.patientAge,req.body.patientGender,req.body.patientAddress,req.body.patientContactNo,req.body.patientCitizenshipNo],(error,results)=>{
         if(error) throw error;
     })
     res.redirect("/admin/patientAdded");

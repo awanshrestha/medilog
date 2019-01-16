@@ -4,10 +4,32 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran">
+	<link rel="stylesheet" href="/css/framazeing.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
+	<title>Settings</title>
 </head>
 <body>
+		<h2>Settings</h2>
 		<% include includes/navbar.ejs %>
-		<a href="/patient/logout" style="position:absolute; bottom:50px;" >Logout</a>
+		<a href="/patient/logout"  >Logout</a>
+
+		<h4>Update Profile</h4>
+		<form action="/patient/updateProfile" method="POST">
+			<input type="text" name="patientAddress" id="address"  value="<%=data.patient.address 	%>"required> Address <br> <br>
+			<input type="text" name="patientContactNo" id="contact-no"  value="<%=data.patient.contact_no 	%>"required> Contact Number <br> <br>
+			<input type="text" name="patientEmail" id="email"  value="<%=data.patient.email 	%>"required> Email <br> <br>
+			<div class="button-holder"><input type="submit" value="Update Profile"></div>
+		<div>	<%= data.profileupdate %></div> <br>
+	</form>
+
+		<h4>Reset Password</h4>
+    <form action="/patient/resetPassword" method="POST">
+        <input type="password" name="oldPassword" required> Current Password <br>  <br>
+        <input type="password" name="newPassword" required> New Password <br> <br>
+        <input type="submit" value="Reset Password">
+    </form>
+		<%= data.passworderror %> <br>
+		<%= data.passwordchanged %>
 </body>
 </html>

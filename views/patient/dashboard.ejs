@@ -3,14 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=display-width, initial-scale=1.0">
-	<title>Welcome back, Patient</title>
+	<title>	<%= data.patient.name %></title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran">
 	<link rel="stylesheet" href="/css/framazeing.css">
 	<link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
+		<h2>Dashboard</h2>
 	<% include includes/navbar.ejs %>
-	<div class="page-wrapper">
+	<a href="/patient/logout">Logout</a>
+	<!-- <div class="page-wrapper">
 		<div class="container">
 			<main class="three-fourths column">
 				<h1 class="row">Welcome back, <span id="username">Insert Username</span></h1>
@@ -54,7 +56,25 @@
 				</nav>
 			</aside>
 		</div>
-	</div>
-	<a href="/patient/logout" style="position:absolute; bottom:50px;" >Logout</a>
+	</div> -->
+	<h3>User Profile</h3>
+	Name : <%= data.patient.name %> <br>
+	Patient Id : <%= data.patient.patient_id %> <br>
+	Gender : <%= data.patient.gender %> <br>
+	Age : <%= data.patient.age %> <br>
+	Address : <%= data.patient.address %> <br>
+	Contact No. : <%= data.patient.contact_no %> <br>
+	Citizenship No : <%= data.patient.citizenship_no %> <br>
+	Email : <%= data.patient.email %> <br> <br>
+
+	<h3>Health Status</h3>
+	Blood Group : <%= data.description[0].blood_group%> <br>
+	Allergies : <%= data.description[0].allergies%> <br>
+	Heart Rate : <%= data.description[0].heart_rate%>  Beats per minute<br>
+	Blood Pressure : <%= data.description[0].blood_pressure%> mmHg  <br>
+	Blood Sugar Level : <%= data.description[0].blood_sugar%> mg/dL <br>
+	Cholesterol Level : <%= data.description[0].cholesterol_level%> mg/dL <br> <br>
+
+
 </body>
 </html>

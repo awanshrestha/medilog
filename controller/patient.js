@@ -1,12 +1,13 @@
 const md5 = require("md5");
 
-var patient = {}
 module.exports.index = (req,res)=>{
-    pool.query("SELECT * FROM patient WHERE patient_id =?",[req.cookies.patientId],(error,results)=>{
+    pool.query("SELECT * FROM patient WHERE patient_id =? ",[req.cookies.patientId],(error,results)=>{
         if(error) throw error;
-        patient = { print : results[0]}
+        pool.query('SELECT * FROM disease WHERE patient_id = ?', [req.cookies.patientId], (error, diseaseResults) => {
+          data = { patient : results[0], diseaseResults}
+          res.render("./patient/index .ejs",data);
+        });
     })
-    res.render("./patient/index.ejs",patient);
 }
 
 module.exports.getPatientLogin = (req,res)=>{
@@ -72,7 +73,14 @@ module.exports.postPatientLogout = (req,res)=>{
 }
 
 module.exports.dashboard = (req,res) =>{
-    res.render("./patient/dashboard.ejs");
+  pool.query("SELECT * FROM patient WHERE patient_id = ?",[req.cookies.patientId],(error,patientinfo)=>{
+    if(error) throw error;
+    pool.query("SELECT * FROM description WHERE patient_id=?",[req.cookies.patientId],(error,description)=>{
+      data = {patient : patientinfo[0], description}
+      res.render("./patient/dashboard.ejs",data);
+    })
+  })
+
 }
 module.exports.patienthistory = (req,res) =>{
   res.render("./patient/history.ejs");
@@ -84,6 +92,45 @@ module.exports.medication = (req,res) =>{
   res.render("./patient/medication.ejs");
 }
 module.exports.settings = (req,res) =>{
-  res.render("./patient/settings.ejs");
+  var profileupdate = (req.cookies.updateProfileSuccess) ? req.cookies.updateProfileSuccess : "";
+  res.clearCookie("updateProfileSuccess");
+    var passworderror = (req.cookies.changePasswordError) ? req.cookies.changePasswordError : "";
+    res.clearCookie("changePasswordError");
+    var passwordchanged = (req.cookies.changePasswordSuccessful) ? req.cookies.changePasswordSuccessful : "";
+    res.clearCookie("changePasswordSuccessful");
+    pool.query("SELECT * FROM patient WHERE patient_id=?",[req.cookies.patientId],(error,patientdata)=>{
+      if(error) throw error;
+      data = { profileupdate : profileupdate ,passworderror : passworderror, passwordchanged : passwordchanged,patient: patientdata[0]}
+      res.render("./patient/settings.ejs",data);
+    })
+}
+
+module.exports.postResetPassword = (req,res)=>{
+  req.body.oldPassword = md5(req.body.oldPassword);
+  req.body.newPassword = md5(req.body.newPassword);
+  pool.query("SELECT patient_id FROM patient WHERE patient_id=? AND password=? ",[req.cookies.patientId, req.body.oldPassword],(error,results)=>{
+      if(error) {
+          throw error;
+      }
+      if(results.length > 0){
+          pool.query("UPDATE patient SET password = ? WHERE patient_id = ?",[req.body.newPassword,req.cookies.patientId],(error,results)=>{
+              if(error) throw error;
+              res.cookie("changePasswordSuccessful","Password Changed Successfully");
+              res.redirect("/patient/settings");
+          })
+      }
+      else{
+          res.cookie("changePasswordError","Current Password Wrong");
+          res.redirect("/patient/settings");
+      }
+  })
+}
+
+module.exports.postUpdateProfile = (req,res)=>{
+  pool.query("UPDATE patient SET address=?, contact_no=?, email=? WHERE patient_id=?",[req.body.patientAddress,req.body.patientContactNo,req.body.patientEmail,req.cookies.patientId],(error,results)=>{
+      if (error) throw error;
+      res.cookie("updateProfileSuccess","Profile Successfully Updated");
+      res.redirect("/patient/settings");
+  });
 }
 

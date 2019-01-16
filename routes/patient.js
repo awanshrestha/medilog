@@ -13,4 +13,8 @@ router.get("/labtests",patient.authenticatePatient,patient.labtests);
 router.get("/medication",patient.authenticatePatient,patient.medication);
 router.get("/settings",patient.authenticatePatient,patient.settings);
 
+
+router.post("/updateProfile",patient.postUpdateProfile);
+router.post("/resetPassword",patient.postResetPassword);
+
 module.exports = router;
