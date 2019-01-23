@@ -1,0 +1,63 @@
+
+
+#container{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+#firstAidList{
+    text-align: center;  
+    display: flex;
+    justify-content: space-around; 
+    /* font-size: 1.5em; */
+    line-height: 1.4em;
+}
+
+#firstAidList, #firstAids{
+    padding: 1em 1em;
+    margin: 4px 4px;
+    height: 700px;
+    box-shadow: 5px 20px burlywood;
+    overflow: scroll;
+    overflow-x: hidden;
+    /* font-size: 1.5em; */
+    line-height: 1.4em;
+}
+
+#background-image1{
+    position: absolute;
+    height: 900px;
+    width: 100%;
+    background-image:url('firstaid.png');
+    background-size:cover;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+h1{
+    padding: px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.liPhoto{
+    padding: 30px;
+    border-top: 6px solid powderblue;
+    border-left: 6px solid powderblue;
+    box-shadow: 6px 6px 6px 6px powderblue;
+}
+
+.liPhoto:hover{
+    border-top: 6px solid brown;
+    border-left: 6px solid brown;
+    box-shadow: 6px 6px 6px 6px brown;
+}
+
+.LI{
+    padding: 15px;
+}
+
+
+

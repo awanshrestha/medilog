@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=display-width, initial-scale=1.0">
+	<title>	Doctor Portal</title>
+	<link rel="stylesheet" href="/fontawesome/css/all.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran">
+	<link rel="stylesheet" href="/css/framazeing.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+	<main class="container">
+		<div class="container offset-three-columns three-fourths column">
+			<section class="row top heading">
+				<h1>Patient: <span id="username">	<%= data.patient.name %></span></h1>
+			</section>
+			<!-- Basic Info -->
+			<div class="row">
+				<section class="twelve columns">
+					<h2 class="heading green">Basic Information</h2>
+					Name : <%= data.patient.name %> <br>
+					Patient Id : <%= data.patient.patient_id %> <br>
+					Gender : <%= data.patient.gender %> <br>
+					Age : <%= data.patient.age %> <br>
+					Address : <%= data.patient.address %> <br>
+					Contact No. : <%= data.patient.contact_no %> <br>
+					Citizenship No : <%= data.patient.citizenship_no %> <br>
+					Email : <%= data.patient.email %> <br>
+					<!--  Showing Blood Group -->
+					Blood Group : <%for(var i=0; i < data.description.length; i++){%>
+						<% if(data.description[i].blood_group!==''){%>
+						 <%= data.description[i].blood_group%>
+					<%}%>
+					<%}%> <br> <br>
+				</section>
+			</div>
+
+			<!-- Medical History -->
+			<section class="row">
+					<section class="twelve columns">
+						<h2 class="heading green">Medical History</h2>
+						<table style="width:90%">
+								<thead>
+									<tr>
+										<th>Disease or Problem</th>
+										<th>Description</th>
+										<th>Date</th>
+										<th>Doctor's Name</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%for(var i=0;i < data.diagnosis.length; i++){%>
+										<tbody>
+												<tr>
+													<td><%=data.diagnosis[i].disease_problem%></td>
+													<td><%=data.diagnosis[i].description%></td>
+													<td><%=data.diagnosis[i].date%></td>
+													<td><%=data.diagnosis[i].doctor_name%></td>
+												</tr>
+											</tbody>
+									<%}%>
+							</tbody>
+						</table>
+					</section>
+				</section>
+			<!-- Lab Tests -->
+			<section class="row">
+					<section class="twelve columns">
+					<h2 class="heading green">Lab Test Reports</h2>
+					<table style="width:100%">
+						<thead>
+							<tr>
+								<th>Lab Report Name</th>
+								<th>Lab Report Date</th>
+								<th>View</th>
+							</tr>
+						</thead>
+						<tbody>
+								<%for(var i=0;i < data.labtests.length; i++){%>
+								<tbody>
+									<tr>
+										<td><%=data.labtests[i].file_name%></td>
+										<td><%=data.labtests[i].date%></td>
+										<td>
+											<a class="button button-primary" href="/uploads/<%=data.labtests[i].destination%>" target="_blank"><i class="fas fa-image"></i></a>
+										</td>
+									</tr>
+								</tbody>
+								<%}%>
+							</tbody>
+						</table>
+					</section>
+			</section>
+			<!-- Medications -->
+			<section class="row">
+					<section class="twelve columns">
+						<h2 class="heading green">Current Medications</h2>
+						<%for(var i=0;i < data.medications.length;i++ ){%>
+						<%if((data.medications[i].end_date-Date.now()) > 0){%>
+							<table style="width:100%">
+							<thead>
+								<tr>
+									<th>Medicine Name</th>
+									<th>Amount</th>
+									<th>Dose</th>
+									<th>Prescribed By</th>
+									<th>Prescribed Date</th>
+									<th>Prescribed For Days</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><%=data.medications[i].medicine_name%></td>
+									<td><%=data.medications[i].amount%></td>
+									<td><%=data.medications[i].dose%></td>
+									<td><%=data.medications[i].prescribed_by%></td>
+									<td><%=Date(data.medications[i].prescribed_date)%></td>
+									<td><%=data.medications[i].prescribed_for%></td>
+								</tr>
+							</tbody>
+						</table>
+						<%}%>
+						<%}%>
+					</section>
+				</section>
+				<section class="row">
+					<section class="twelve columns">
+						<h2 class="heading orange">Past Medications</h2>
+						<%for(var i=0;i < data.medications.length;i++ ){%>
+						<%if((data.medications[i].end_date-Date.now()) < 0){%>
+						<table>
+							<thead>
+								<tr>
+									<th>Medicine Name</th>
+									<th>Amount</th>
+									<th>Dose</th>
+									<th>Prescribed By</th>
+									<th>Prescribed Date</th>
+									<th>Prescribed For Days</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><%=data.medications[i].medicine_name%></td>
+									<td><%=data.medications[i].amount%></td>
+									<td><%=data.medications[i].dose%></td>
+									<td><%=data.medications[i].prescribed_by%></td>
+									<td><%=Date(data.medications[i].prescribed_date)%></td>
+									<td><%=data.medications[i].prescribed_for%></td>
+								</tr>
+							</tbody>
+						</table> <br><br>
+						<%}%>
+						<%}%>
+					</section>
+				</section>
+			<!-- Description -->
+				<div class="row">
+						<section class="one-third column blood">
+							<h2 class="heading orange">Heart Rate</h2>
+							<!--  Showing Heart rate -->
+							<%for(var i=0; i < data.description.length; i++){%>
+								<% if(data.description[i].heart_rate!==''){%>
+									Heart Rate : <%= data.description[i].heart_rate%>
+									<span>Beats per minute</span>  <br> Updated on: <%=data.description[i].date_updated%><br> <hr>
+							<%}%>
+							<%}%>
+						</section>
+						<section class="one-third column pressure">
+							<h2 class="heading orange">Blood Pressure</h2>
+							<!--  Showing Blood Pressure -->
+								<%for(var i=0; i < data.description.length; i++){%>
+									<% if(data.description[i].blood_pressure!==''){%>
+										Blood Pressure : <%= data.description[i].blood_pressure%>
+										<span>mmHg</span> Updated on: <%=data.description[i].date_updated%><br> <hr>
+									<%}%>
+								<%}%>
+						</section>
+						<section class="one-third column heart">
+							<h2 class="heading orange">Blood Sugar Level</h2>
+								<!--  Showing Blood Sugar -->
+								<%for(var i=0; i < data.description.length; i++){%>
+									<% if(data.description[i].blood_sugar!==''){%>
+										Blood Sugar Level : <%= data.description[i].blood_sugar%>
+										<span>mg/dL</span> <br> Updated on: <%=data.description[i].date_updated%><br> <hr>
+									<%}%>
+								<%}%>
+						</section>
+					</div>
+					<div class="row">
+						<section class="six columns meds">
+							<h2 class="heading orange">Cholesterol Level</h2>
+								<%for(var i=0; i < data.description.length; i++){%>
+								<% if(data.description[i].cholesterol_level!==''){%>
+									Cholesterol Level : <%= data.description[i].cholesterol_level%>
+									<span>mg/dL</span>  <br> Updated on: <%=data.description[i].date_updated%><br> <hr>
+								<%}%>
+							<%}%>
+						</section>
+						<section class="six columns appoint">
+							<h2 class="heading orange"> Allergies</h2>
+							<!--  Showing Allergies -->
+							<%for(var i=0; i < data.description.length; i++){%>
+								<% if(data.description[i].allergies!==''){%>
+									 <%= data.description[i].allergies%>
+							<%}%>
+							<%}%> <br>
+						</section>
+					</div>
+			<!-- Doctor Visits -->
+			<section class="row">
+				<section class="twelve columns">
+						<h2 class="heading green">Hospital Visits</h2>
+						<% for(var i = 0; i < data.appointment.length; i++){ %>
+						<table style="width:70%">
+								<thead>
+									<tr>
+											<th>Department</th>
+											<th>Doctor</th>
+											<th>Appointment Date</th>
+											<th>Appointment Time</th>
+									</tr>
+								</thead>
+								<tbody>
+
+
+							<tr>
+									<td><%= data.appointment[i].department %></td>
+									<td><%= data.appointment[i].doctor_name %></td>
+									<td><%= data.appointment[i].appointment_date %></td>
+									<td><%= data.appointment[i].appointment_time %></td>
+							</tr>
+						</tbody>
+						</table> <br><br>
+						<%}%>
+				</section>
+			</section>
+		</main>
+	</div>
+	<!-- <% include includes/navbar.ejs %> -->
+	<aside class="main-sidebar one-fourth column">
+		<section class="patient-info">
+			<img class="profile-img" alt="User profile image"
+			  src="https://img.icons8.com/color/50/000000/circled-user-male-skin-type-6.png">
+			<section class="details">
+				<h2>	<%= data.patient.name %></h2>
+			</section>
+		</section>
+		<nav class="dash-nav" id="dash-nav">
+			<ul>
+				<li><a href="/doctor/view_patient/<%= data.param %>" class="nav-link active"><i class="fas fa-user"></i> Patient Information</a></li>
+				<li><a href="/doctor/update_health_status/<%= data.param %>" class="nav-link"><i class="fas fa-heartbeat"></i>Update Health Status</a></li>
+				<li><a href="/doctor/diagnosis/<%= data.param %>" class="nav-link"><i class="fas fa-stethoscope"></i>Diagnosis</a></li>
+				<li><a href="/doctor/update_medication/<%= data.param %>" class="nav-link"><i class="fas fa-pills"></i>Prescribe Medicines </a></li>
+				<li><a href="/doctor/update_labtests/<%= data.param %>" class="nav-link"><i class="fas fa-flask"></i> Update Lab Reports</a></li>
+				<li><a href="/doctor/add_appointment/<%= data.param %>" class="nav-link"><i class="fas fa-notes-medical"></i> Add Appointment</a></li>
+				<li><a href="/doctor/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+			</ul>
+		</nav>
+	</aside>
+	<script src="/js/active_link.js"></script>
+</body>
+</html>

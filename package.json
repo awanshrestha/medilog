@@ -14,9 +14,11 @@
     "cookie-parser": "^1.4.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-fileupload": "^1.1.1-alpha.1",
     "express-session": "^1.15.6",
     "md5": "^2.2.1",
     "mysql": "^2.16.0",
+    "nodemailer": "^5.1.1",
     "path": "^0.12.7"
   }
 }

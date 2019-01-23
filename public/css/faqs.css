@@ -1,0 +1,159 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 2em;
+    font-size: 1.2rem;
+}
+
+.btn{
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5em;
+    border: 1px solid #666;
+    margin: 0.5em;
+}
+
+.btn:hover{
+    background: #eaeaea;
+    color: #333;
+}
+
+#card{
+    display: flex;
+    justify-content: center;
+    margin: 1em 0 0 0 ;
+    box-shadow: 3px 3px 5px 6px #fff;
+    height: 3.5em;
+}
+
+#container{
+    display: grid;
+    /* grid-template-columns: 1fr 4fr; */
+}
+
+#section-a, #section-b{
+    box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+#section-a{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.UL{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+#atLast{
+    text-align: center;
+}
+
+.option{
+    border: 1px solid black;
+}
+
+.secB-A{
+    /* border: 1px solid burlywood;     */
+    border-top: 2px solid burlywood;
+    box-shadow: 3px 3px 3px 3px burlywood;
+}
+.liSection{
+    /* border: 1px solid black; */
+    text-align: center;
+    height: 35em;
+    overflow: scroll;
+    background: rgba(170, 57, 57,0.2);
+}
+.descriptionSection{
+    /*  order: 1px solid black; */
+    height: 35em;
+    overflow: scroll;
+    padding-left: 1.5em;
+}
+
+#askQuerySection{
+    margin: 1em;
+    display: flex;
+    align-items: flex-end;
+}
+
+#submitBtnArea{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#wdywtka{
+    padding-left: 1.1em;
+    color: #eaeaea;
+}
+
+
+
+#submitBtn{
+    margin-right: 1em;
+}
+
+a{
+    text-decoration: none;
+    color: #E6C04F;
+}
+
+li{
+    list-style-type:none;
+}
+
+.question a {
+    color: green;
+}
+
+.answer{
+    color: darkred;
+}
+
+.question .answer{
+    line-height:2em;
+}
+
+img{
+    height: 5em;
+    width: auto;
+}
+
+#bg-section2{
+    position: absolute;
+    background: #333 url('https://images.pexels.com/photos/356079/pexels-photo-356079.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-size: cover;
+    width: 100%;
+    height: 32em;
+    z-index: -1;
+    opacity: 0.1;
+}
+#bg-section1{
+    position: absolute;
+    background: #333;
+    width: 100%;
+    height: 32em;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+#exceptFilter{
+    height: 35em;
+    width: auto;
+}
+
+.filter{
+    display: none;
+    padding-left: 1.5em;
+}
+
+#exceptFilter{
+    padding-top: 2em;
+}
+
+#exceptFilter li a{
+    color: rgb(0, 17, 255);
+    line-height: 2;
+}

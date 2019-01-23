@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Doctor Login</title>
+		<title>Doctor Login</title>
+		<link rel="stylesheet" href="/css/framazeing.css">
+		<link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-    <h2>Login As Doctor</h2>
-    <form action="/doctor/login" method="POST">
-        <input type="text" name="doctorEmail"> Email <br> <br>
-        <input type="password" name="doctorPassword"> Password <br> <br>
-        <input type="submit" value="Login"> <br> <br>
-    </form>
-    <%= error%>
+	<section class="login-box">
+		<h2>Login As Doctor</h2>
+    	<form action="/doctor/login" method="POST">
+        <p><label for="doctorEmail">Email</label></p><p><input type="text" name="doctorEmail" required></p>
+        <p><label for="doctorPassword">Password</label></p><p><input type="password" name="doctorPassword" required>
+        <p><input type="submit" value="Login" class="button"></p>
+			</form>
+			<p class="error"><%= error%></p>
+	</section>
 </body>
 </html>

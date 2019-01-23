@@ -1,15 +1,5 @@
 const md5 = require("md5");
 
-module.exports.index = (req,res)=>{
-    pool.query("SELECT * FROM patient WHERE patient_id =? ",[req.cookies.patientId],(error,results)=>{
-        if(error) throw error;
-        pool.query('SELECT * FROM disease WHERE patient_id = ?', [req.cookies.patientId], (error, diseaseResults) => {
-          data = { patient : results[0], diseaseResults}
-          res.render("./patient/index .ejs",data);
-        });
-    })
-}
-
 module.exports.getPatientLogin = (req,res)=>{
     var error = (req.cookies.error) ? req.cookies.error : "";
     res.clearCookie("error");
@@ -76,20 +66,44 @@ module.exports.dashboard = (req,res) =>{
   pool.query("SELECT * FROM patient WHERE patient_id = ?",[req.cookies.patientId],(error,patientinfo)=>{
     if(error) throw error;
     pool.query("SELECT * FROM description WHERE patient_id=?",[req.cookies.patientId],(error,description)=>{
-      data = {patient : patientinfo[0], description}
+      if(error){ throw error; }
+      pool.query("SELECT * FROM appointment WHERE patient_id=?",[req.cookies.patientId],(error,appointment)=>{
+        if(error){ throw error; }
+        data = {patient : patientinfo[0]|| [], description : description|| [],appointment : appointment || []}
       res.render("./patient/dashboard.ejs",data);
+
+      })
+
     })
   })
 
 }
 module.exports.patienthistory = (req,res) =>{
-  res.render("./patient/history.ejs");
+  pool.query("SELECT * FROM patient WHERE patient_id = ?",[req.cookies.patientId],(error,patientinfo)=>{
+    if(error) throw error;
+    pool.query("SELECT * FROM diagnosis WHERE patient_id=?",[req.cookies.patientId],(error,diagnosis)=>{
+      data = {patient : patientinfo[0]|| [], diagnosis : diagnosis|| []}
+      res.render("./patient/history.ejs",data);
+    })
+  })
 }
 module.exports.labtests = (req,res) =>{
-  res.render("./patient/labtests.ejs");
+  pool.query("SELECT * FROM patient WHERE patient_id = ?",[req.cookies.patientId],(error,patientinfo)=>{
+    if(error) throw error;
+    pool.query("SELECT * FROM labtests WHERE patient_id=?",[req.cookies.patientId],(error,labtests)=>{
+      data = {patient : patientinfo[0]|| [], labtests : labtests|| []}
+      res.render("./patient/labtests.ejs",data);
+    })
+  })
 }
 module.exports.medication = (req,res) =>{
-  res.render("./patient/medication.ejs");
+  pool.query("SELECT * FROM patient WHERE patient_id = ?",[req.cookies.patientId],(error,patientinfo)=>{
+    if(error) throw error;
+    pool.query("SELECT * FROM medications WHERE patient_id=?",[req.cookies.patientId],(error,medications)=>{
+      data = {patient : patientinfo[0]|| [], medications : medications|| []}
+      res.render("./patient/medication.ejs",data);
+    })
+  })
 }
 module.exports.settings = (req,res) =>{
   var profileupdate = (req.cookies.updateProfileSuccess) ? req.cookies.updateProfileSuccess : "";
@@ -133,4 +147,82 @@ module.exports.postUpdateProfile = (req,res)=>{
       res.redirect("/patient/settings");
   });
 }
+
+module.exports.forgotPassword = (req,res)=>{
+  var nomail = (req.cookies.nomail) ? req.cookies.nomail : "";
+    res.clearCookie("nomail");
+    res.render("./patient/forgotpassword.ejs",{
+      nomail: nomail
+    });
+}
+
+module.exports.postForgotPassword = (req,res)=>{
+  var code = md5(Date.now()).slice(0,6);
+
+  var mail = "Dear user, Here is your verification code " + code;
+
+  const nodemailer = require("nodemailer");
+  async function main(){
+  let account = await nodemailer.createTestAccount();
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "facebookpage1001@gmail.com" ,
+      pass: "nepal2019"
+    }
+  });
+
+  let mailOptions = {
+    from: '"Medilog" <admin@medilog.com>',
+    to: req.body.useremail,
+    subject: "Reset Password",
+    text: mail,
+    html: "<a href='http://localhost:3000/patient/verify_code/"+req.body.useremail+"/"+code+"'>http://localhost:3000/patient/verify_code/"+req.body.useremail+"/"+code+"</a>"
+  };
+  let info = await transporter.sendMail(mailOptions)
+  }
+  main().catch(console.error);
+  pool.query("SELECT * FROM patient WHERE email = ?",[req.body.useremail],(error,results)=>{
+    if(error) throw error;
+    if(results.length==0){
+      res.cookie("nomail","No such email address found.");
+      res.redirect("/patient/forgot_password");
+    }
+    else{
+      pool.query("UPDATE patient SET vcode = ? WHERE email =?",[code,req.body.useremail],(error,results)=>{
+        if (error) throw error;
+        res.send("Check your email for verification link.");
+      })
+    }
+  })
+}
+
+module.exports.verifyCode = (req,res)=>{
+  res.render("./patient/verification.ejs");
+}
+
+module.exports.postVerifyCode = (req,res)=>{
+  req.body.password = md5(req.body.password);
+  req.body.password2 = md5(req.body.password2);
+  if(req.body.password==req.body.password2){
+    pool.query("SELECT * FROM patient WHERE email = ? AND vcode = ?",[req.params.useremail,req.params.vcode],(error,results)=>{
+      if(error) throw error;
+      if (results.length>0){
+        pool.query("UPDATE patient SET password = ? WHERE email = ?",[req.body.password,req.params.useremail],(error,results)=>{
+          if(error) throw error;
+          else{ res.send("Password Changed Successfully.");}
+        })
+      }
+      else{
+        res.send("Verification Code Wrong.");
+      }
+    })
+  }
+  else{
+    res.send("Passwords are not matching");
+  }
+}
+
 

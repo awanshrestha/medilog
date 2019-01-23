@@ -1,0 +1,85 @@
+html{
+    font-size: 70%;
+}
+
+body{
+    background-image: linear-gradient(to right,rgb(236, 246, 248),rgb(246, 210, 210));
+    font-size: 1.6rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    letter-spacing: 0.4px;
+}
+.image{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 45px;
+}
+.province-map{
+    
+    box-shadow: 0 24px 58px rgba(0, 0, 0, 0.404);
+    border-radius: 8px;
+    border:2px solid rgba(0, 0, 0, 0.178);  
+    height: 494px; 
+    transition:all .2s ease-in-out;
+}
+.province-map:hover{
+    height: 500px;
+}
+h1{
+    text-align: center;
+}
+table,tr,th,td{
+    border:2px solid black;
+    border-collapse: collapse;
+}
+th{
+    border: 2px solid black;
+    background-color:rgb(238, 147, 147);
+    padding:7px 18px;
+  
+}
+td{
+    padding:6.5px 18px;
+    background-color:rgb(235, 222, 201);
+}
+.td-dark{
+    background-color:rgb(177, 162, 138);
+    font-weight: bold;
+}
+h2{
+    margin-top: 4rem;
+}
+.province-intro{
+    line-height: 2.7rem;
+    letter-spacing: 1px;
+}
+.center{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    margin-top: 4rem;
+    transition:all .2s ease;
+}
+.center:hover{
+    transform: scale(1.05);
+}
+.alert{
+    
+    border:2px solid rgb(146, 18, 18);
+    border-radius: 2.6rem;
+    background-color: rgba(212, 6, 6, 0.671);
+   
+}
+.h1-alert{
+    color:rgb(37, 0, 0);
+    font-size: 4.8rem;
+
+}
+.p-disease{
+    color: rgb(94, 33, 33);
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-left: 4rem;
+}
+li{
+    list-style-type:number;
+}

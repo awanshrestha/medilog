@@ -3,78 +3,146 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=display-width, initial-scale=1.0">
-	<title>	<%= data.patient.name %></title>
+	<title>	<%=data.patient.name%></title>
+	<link rel="stylesheet" href="/fontawesome/css/all.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran">
 	<link rel="stylesheet" href="/css/framazeing.css">
 	<link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-		<h2>Dashboard</h2>
-	<% include includes/navbar.ejs %>
-	<a href="/patient/logout">Logout</a>
-	<!-- <div class="page-wrapper">
-		<div class="container">
-			<main class="three-fourths column">
-				<h1 class="row">Welcome back, <span id="username">Insert Username</span></h1>
-				<div class="row">
-					<section class="one-third column">
-						<h2>Blood Test</h2>
-						<p>Insert blood test report here</p>
-					</section>
-					<section class="one-third column">
-						<h2>Blood Pressure</h2>
-						<p>Insert blood pressure report</p>
-					</section>
-					<section class="one-third column">
-						<h2>Heart Rate</h2>
-						<p>Insert heart rate report</p>
-					</section>
-				</div>
-				<div class="row">
-					<section class="one-half column">
-						<h2>Current Medication</h2>
-						<p>Your are taking these medicines.</p>
-					</section>
-					<section class="one-half column">
-						<h2>Next Appointment</h2>
-						<p>You are to meet Dr. Lorem Ipsum next.</p>
-					</section>
-				</div>
-			</main>
-			<aside class="main-sidebar one-fourth column">
-				<section class="patient-info">
-					<img class="profile-img" alt="User profile image"
-					  src="https://img.icons8.com/color/50/000000/circled-user-male-skin-type-6.png">
-					<section class="details">
-					<h2>Patient 1</h2>
+	<main class="container">
+		<div class="container offset-three-columns three-fourths column">
+			<section class="row top heading">
+				<h1>Welcome back, <span id="username">	<%= data.patient.name %></span></h1>
+			</section>
+			<div class="row">
+				<section class="twelve columns">
+					<h2 class="heading green">User Profile</h2>
+					Name : <%= data.patient.name %> <br>
+					Patient Id : <%= data.patient.patient_id %> <br>
+					Gender : <%= data.patient.gender %> <br>
+					Age : <%= data.patient.age %> <br>
+					Address : <%= data.patient.address %> <br>
+					Contact No. : <%= data.patient.contact_no %> <br>
+					Citizenship No : <%= data.patient.citizenship_no %> <br>
+					Email : <%= data.patient.email %> <br>
+					<!--  Showing Blood Group -->
+					Blood Group : <%for(var i=0; i < data.description.length; i++){%>
+						<% if(data.description[i].blood_group!==''){%>
+						 <%= data.description[i].blood_group%>
+					<%}%>
+					<%}%> <br> <br>
 				</section>
-				<nav class="dash-nav">
-					<ul>
-						<li><a href="#">Medical History</a></li>
-						<li><a href="#">Medicines Taken</a></li>
-					</ul>
-				</nav>
-			</aside>
-		</div>
-	</div> -->
-	<h3>User Profile</h3>
-	Name : <%= data.patient.name %> <br>
-	Patient Id : <%= data.patient.patient_id %> <br>
-	Gender : <%= data.patient.gender %> <br>
-	Age : <%= data.patient.age %> <br>
-	Address : <%= data.patient.address %> <br>
-	Contact No. : <%= data.patient.contact_no %> <br>
-	Citizenship No : <%= data.patient.citizenship_no %> <br>
-	Email : <%= data.patient.email %> <br> <br>
+			</div>
+			<div class="row">
+				<section class="one-third column blood">
+					<h2 class="heading orange">Heart Rate</h2>
+					<!--  Showing Heart rate -->
+					<%for(var i=0; i < data.description.length; i++){%>
+						<% if(data.description[i].heart_rate!==''){%>
+							Heart Rate : <%= data.description[i].heart_rate%>
+							<span>Beats per minute</span>  <br> Updated on: <%=data.description[i].date_updated%><br> <hr>
+					<%}%>
+					<%}%>
+				</section>
+				<section class="one-third column pressure">
+					<h2 class="heading orange">Blood Pressure</h2>
+					<!--  Showing Blood Pressure -->
+						<%for(var i=0; i < data.description.length; i++){%>
+							<% if(data.description[i].blood_pressure!==''){%>
+								Blood Pressure : <%= data.description[i].blood_pressure%>
+								<span>mmHg</span> Updated on: <%=data.description[i].date_updated%><br> <hr>
+							<%}%>
+						<%}%>
+				</section>
+				<section class="one-third column heart">
+					<h2 class="heading orange">Blood Sugar Level</h2>
+						<!--  Showing Blood Sugar -->
+						<%for(var i=0; i < data.description.length; i++){%>
+							<% if(data.description[i].blood_sugar!==''){%>
+								Blood Sugar Level : <%= data.description[i].blood_sugar%>
+								<span>mg/dL</span> <br> Updated on: <%=data.description[i].date_updated%><br> <hr>
+							<%}%>
+						<%}%>
+				</section>
+			</div>
+			<div class="row">
+				<section class="six columns meds">
+					<h2 class="heading orange">Cholesterol Level</h2>
+						<%for(var i=0; i < data.description.length; i++){%>
+						<% if(data.description[i].cholesterol_level!==''){%>
+							Cholesterol Level : <%= data.description[i].cholesterol_level%>
+							<span>mg/dL</span>  <br> Updated on: <%=data.description[i].date_updated%><br> <hr>
+						<%}%>
+					<%}%>
+				</section>
+				<section class="six columns appoint">
+					<h2 class="heading orange"> Allergies</h2>
+					<!--  Showing Allergies -->
+					<%for(var i=0; i < data.description.length; i++){%>
+						<% if(data.description[i].allergies!==''){%>
+							 <%= data.description[i].allergies%> <br> <hr>
+					<%}%>
+					<%}%> <br>
+				</section>
+			</div>
 
-	<h3>Health Status</h3>
-	Blood Group : <%= data.description[0].blood_group%> <br>
-	Allergies : <%= data.description[0].allergies%> <br>
-	Heart Rate : <%= data.description[0].heart_rate%>  Beats per minute<br>
-	Blood Pressure : <%= data.description[0].blood_pressure%> mmHg  <br>
-	Blood Sugar Level : <%= data.description[0].blood_sugar%> mg/dL <br>
-	Cholesterol Level : <%= data.description[0].cholesterol_level%> mg/dL <br> <br>
+			<div class="row">
+				<section class="twelve columns">
+					<h2 class="heading green">Next Appointment</h2>
 
 
+							<!-- showing appointment -->
+						<% var vetghat=data.appointment.length-1; %>
+						<% if(data.appointment.length > 0) { %>
+						<table style="width:70%">
+								<thead>
+									<tr>
+											<th>Department</th>
+											<th>Doctor</th>
+											<th>Appointment Date</th>
+											<th>Appointment Time</th>
+									</tr>
+								</thead>
+								<tbody>
+
+
+							<tr>
+									<td><%= data.appointment[vetghat].department %></td>
+									<td><%= data.appointment[vetghat].doctor_name %></td>
+									<td><%= data.appointment[vetghat].appointment_date %></td>
+									<td><%= data.appointment[vetghat].appointment_time %></td>
+							</tr>
+						</tbody>
+						</table> <br><br>
+							<% } else {  %>
+								<h4 align="center">You have no appointments</h4>
+								<% } %>
+
+				</section>
+			</div>
+		</main>
+	</div>
+	<!-- <% include includes/navbar.ejs %> -->
+	<aside class="main-sidebar one-fourth column">
+		<section class="patient-info">
+			<img class="profile-img" alt="User profile image"
+			  src="https://img.icons8.com/color/50/000000/circled-user-male-skin-type-6.png">
+			<section class="details">
+				<h2>	<%= data.patient.name %></h2>
+			</section>
+		</section>
+		<nav class="dash-nav" id="dash-nav">
+			<ul>
+				<li><a href="/patient" class="nav-link active"><i class="fas fa-heartbeat"></i> Dashboard</a></li>
+				<li><a href="/patient/history" class="nav-link"><i class="fas fa-notes-medical"></i> Medical History</a></li>
+				<li><a href="/patient/labtests" class="nav-link"><i class="fas fa-flask"></i> Lab Tests</a></li>
+				<li><a href="/patient/medication" class="nav-link"><i class="fas fa-pills"></i> Medicines Taken</a></li>
+				<li><a href="/patient/settings" class="nav-link"><i class="fas fa-cogs"></i> Settings</a></li>
+				<li><a href="/patient/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+			</ul>
+		</nav>
+	</aside>
+	<script src="/js/active_link.js"></script>
 </body>
 </html>

@@ -3,27 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hospital Admin</title>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+	<link rel="stylesheet" href="css/admin_index.css">
+	<link rel="stylesheet" href="/fontawesome/css/all.css">
+	<script src="js/admin.js"></script>
+  	<title>Hospital Admin</title>
 </head>
 <body>
-    <h2>Hospital Admin Panel</h2>
-    <a href="/admin/addPatient">Add Patient</a> <br> <br>
-    <a href="/admin/addDoctor">Add Doctor</a> <br> <br>
-    <h3>Settings</h3>
+<header>
+	<a href="/medilogIndex" class="header-part">MEDILOG</a>
+<!--	<nav>
+		<ul>
+				<li><a href="/medilogIndex">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="services.html">Services</a></li>
+				<li><a href="faq.html">FAQs</a></li>
+		</ul>
+	</nav>
+-->
+	<div class="search-box">
+		<input class="search-txt" type="text" name="" placeholder="Type to search">
+		<a class="search-btn" href="#">
+						<i class="fas fa-search"></i>
+		</a>
+		</div>
+</header>
+<main>
+	<section class="index-banner">
+		<div class="center">
+			<h2><span>Hospital Admin Panel  </span> </h2>
+			<h1>"The greatest wealth is health"<br>-Unknown</h1>
+		</div>
+	</section>
+
+	<div class="container">
+		<a href="/admin/addPatient"><button class="btn btn1">Add Patient</button></a>
+		<a href="/admin/addDoctor"><button class="btn btn2">Add Doctor</button></a>
+		<a href="/admin/logout"><button class="btn btn3">Logout</button></a>
+	<!--	<a href="/patientSignup"><button class="btn btn4">Patient SignUp</button></a>-->
+	</div >
+<div class="services">
+	<h1>Our Services</h1>
+	<div class="cen">
+		<div class="service">
+			<i class="fas fa-address-card"></i>
+				<h2>Patient Information</h2>
+				<p>We provide a platform to save your health reports and information.</p>
+		</div>
+
+		<div class="service">
+				<i class="fas fa-hospital-symbol"></i>
+				<h2>Health History</h2>
+				<p>We provide a space to know your health history by storing your past reports.</p>
+		</div>
+
+		<div class="service">
+			<i class="fas fa-pills"></i>
+				<h2>Medication</h2>
+				<p>Past and present medication status is available in our health portal.</p>
+		</div>
+
+		<div class="service">
+			<i class="fas fa-prescription-bottle-alt"></i>
+				<h2>Pharmacy Portal</h2>
+				<p>Name of medicine and the amount prescribed by the doctor is easily available.</p>
+		</div>
+
+	</div>
+</div>
+</main>
+<h3>Settings</h3>
     <h4>Add Admin</h4>
-    <form action="/admin/addAdmin" method="POST">
+    <form action="/admin/addAdmin" method="POST" class="box">
         <input type="text" name="newAdmin" required> Username <br> <br>
         <input type="password" name="adminPassword" required> Password <br> <br>
         <input type="submit" value="Add Admin">
     </form>
     <h4>Reset Password</h4>
-    <form action="/admin/resetPassword" method="POST">
+    <form action="/admin/resetPassword" method="POST" class="box">
         <input type="password" name="oldPassword" required> Current Password <br>  <br>
         <input type="password" name="newPassword" required> New Password <br> <br>
         <input type="submit" value="Reset Password">
     </form>
-    <%= error %> <br> 
-    <a href="/admin/logout" style="position:absolute; bottom:50px;">Logout</a>
+    <%= error %> <br>
+
+<footer>
+	<ul>
+		<li>Contact:</li>
+		<li>Kathmandu University</li>
+		<li>Kavre, Dhulikhel</li>
+	</ul>
+</footer>
 </body>
-</html>

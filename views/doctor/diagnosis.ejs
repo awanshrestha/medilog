@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=display-width, initial-scale=1.0">
+	<title>	Doctor Portal</title>
+	<link rel="stylesheet" href="/fontawesome/css/all.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran">
+	<link rel="stylesheet" href="/css/framazeing.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+	<main class="container">
+		<div class="container offset-three-columns three-fourths column">
+			<section class="row top heading">
+				<h1>Diagnosis </h1>
+			</section> <br>
+			<form action="" method="POST">
+				<input type="text" name="disease" required> Disease or Problem <br> <br>
+				<textarea name="description" cols="30" rows="10" required> Description </textarea><br> <br>
+
+				<input type="Submit" value="Submit Report">
+			</form>
+			<%=success%>
+		</main>
+	</div>
+	<!-- <% include includes/navbar.ejs %> -->
+	<aside class="main-sidebar one-fourth column">
+		<section class="patient-info">
+			<img class="profile-img" alt="User profile image"
+			  src="https://img.icons8.com/color/50/000000/circled-user-male-skin-type-6.png">
+			<section class="details">
+				<h2>	<%= data.patient.name %></h2>
+			</section>
+		</section>
+		<nav class="dash-nav" id="dash-nav">
+			<ul>
+				<li><a href="/doctor/view_patient/<%= data.param %>" class="nav-link "><i class="fas fa-user"></i> Patient Information</a></li>
+				<li><a href="/doctor/update_health_status/<%= data.param %>" class="nav-link"><i class="fas fa-heartbeat"></i>Update Health Status</a></li>
+				<li><a href="/doctor/diagnosis/<%= data.param %>" class="nav-link active"><i class="fas fa-stethoscope"></i>Diagnosis</a></li>
+				<li><a href="/doctor/update_medication/<%= data.param %>" class="nav-link "><i class="fas fa-pills"></i>Prescribe Medicines </a></li>
+				<li><a href="/doctor/update_labtests/<%= data.param %>" class="nav-link "><i class="fas fa-flask"></i> Update Lab Reports</a></li>
+				<li><a href="/doctor/add_appointment/<%= data.param %>" class="nav-link "><i class="fas fa-notes-medical"></i> Add Appointment</a></li>
+				<li><a href="/doctor/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+			</ul>
+		</nav>
+	</aside>
+	<script src="/js/active_link.js"></script>
+</body>
+</html>

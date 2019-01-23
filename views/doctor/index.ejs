@@ -4,11 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Doctor</title>
+		<title>Doctor</title>
+		<link rel="stylesheet" href="/css/framazeing.css">
+		<link rel="stylesheet" href="/css/dashboard.css">
+		<style>
+			body{
+				text-align: center;
+			}
+		</style>
 </head>
 <body>
-    <h2>Doctor Portal</h2>
-   
+		<h2>Doctor Portal</h2>
+		<h5>Enter the patient id below:</h5>
+		<form action="/doctor/search" method="POST">
+			<input type="text" name="searchId" placeholder=" Patient Id"> <br> <br> <br>
+			<input type="submit">
+		</form>
+		<div id="searchResults">
+			<% if (searchResults.length > 0){ %>
+				<br>
+			<a href="/doctor/view_patient/<%= searchResults[0].patient_id %>"><%=searchResults[0].name%></a>
+			<% }%>
+			<% if (searchResults.length == 0){ %>
+				<br>
+				<span><%=notFound	%></span>
+				<%}%>
+		</div>
     <a href="/doctor/logout" style="position:absolute; bottom:50px;" >Logout</a>
 </body>
 </html>

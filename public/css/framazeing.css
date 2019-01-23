@@ -26,7 +26,7 @@ time, mark, audio, video {
 	clear: both;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 768px) {
 	.column,
 	.columns {
 		float: left;
@@ -88,7 +88,6 @@ a {
 	text-decoration: none;
 }
 a:hover {
-	font-weight: 600;
 	text-decoration: underline;
 }
 
@@ -223,3 +222,9 @@ label > .label-body {
   margin-left: .5rem;
   font-weight: normal;
 }
+
+/* Tables
+ * –––––––––––––––––––––––––––––––––––––––––––––––––– */
+table { margin: 0 auto; }
+thead th, tbody td { border-bottom: 1px solid #ddd; }
+tbody td { padding: 0.5rem 1rem; }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/css/framazeing.css">
+		<link rel="stylesheet" href="/css/login.css" />
+	<title>Pharmacy</title>
+</head>
+<body>
+	<h3>Pharmacy</h3>
+	<h4>Enter the patient Id</h4>
+	<form action="/pharmacy/search" method="POST">
+		<input type="text" name ="searchId"> <br> <br>
+		<input type="submit" value="Search">
+	</form>
+
+	<div>
+		<table style="width:70%;">
+			<thead>
+				<th>Patient Id</th>
+				<th>Medicine Name</th>
+				<th>Amount</th>
+				<th>Dose</th>
+				<th>Prescribed For Days</th>
+				<th>Medicine Purchased</th>
+			</thead>
+		<%if(searchResults.length>0){%>
+			<tbody>
+				<%for(var i =0; i< searchResults.length; i++){%>
+					<%if(searchResults[i].medicine_purchased==0){%>
+						<tr>
+							<td>	<%=searchResults[i].patient_id%></td>
+							<td>	<%=searchResults[i].medicine_name%></td>
+							<td>	<%=searchResults[i].amount%></td>
+							<td>	<%=searchResults[i].dose%></td>
+							<td>	<%=searchResults[i].prescribed_for%></td>
+							<td>	<form action="/pharmacy/done" method="POST"><input type="submit" value="Done"></form></td>
+						</tr>
+					<%}%>
+				<%}%>
+			</tbody>
+
+		<%}%>
+	</table>
+	<%=notFound%>
+	</div>
+</body>
+</html>
