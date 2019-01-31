@@ -123,15 +123,6 @@ module.exports.addDiagnosis = (req,res)=>{
   res.render("./doctor/diagnosis.ejs",data);
   })
 }
-module.exports.updateLabTests = (req,res)=>{
-  var param = req.params.patient_id;
-  var success = "";
-  pool.query("SELECT * FROM patient WHERE patient_id = ?",[param],(error,patient)=>{
-    if(error) throw error;
-  data = {param:param,success:success, patient: patient[0] || []}
-  res.render("./doctor/add_labtests.ejs",data);
-  })
-}
 module.exports.updateMedication = (req,res)=>{
   var param = req.params.patient_id;
   var success = "";
@@ -174,28 +165,7 @@ module.exports.postAddDiagnosis = (req,res)=>{
     })
   })
 }
-module.exports.postUpdateLabTests = (req,res)=>{
-  var param = req.params.patient_id;
-  var success;
-  let sampleFile = req.files.sampleFile;
-  pool.query("SELECT * FROM patient WHERE patient_id = ?",[param],(error,patient)=>{
-    if(error) throw error;
-    var filename = patient[0].name+ req.body.fileName +md5(Date.now()).slice(0,6)+'.jpg';
-    pool.query("INSERT INTO labtests (patient_id,file_name,destination) VALUE (?,?,?)",[param,req.body.fileName,filename],(error,results)=>{
-      if(error) throw error;
-      {
-        success = "Lab Report Updated";
-      data ={success:success, param:param, patient : patient[0]|| []}
-      res.render("./doctor/add_labtests.ejs",data);
-      }
-    })
-    sampleFile.mv('./public/uploads/'+filename, function(err) {
-      if (err)
-        return res.status(500).send(err);
-  }
-)}
-);
-}
+
 module.exports.postUpdateMedication = (req,res)=>{
   var param = req.params.patient_id;
   var success;

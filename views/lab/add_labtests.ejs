@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/css/framazeing.css">
+		<link rel="stylesheet" href="/css/dashboard.css">
+	<title>Update Lab Report</title>
+</head>
+<body>
+	<main class="container">
+			<section class="row top heading">
+				<h1>Add Lab Reports </h1>
+			</section> <br>
+			<form ref='uploadForm' id='uploadForm' action=""  method='POST' encType="multipart/form-data">
+				<input type="text" name="fileName" required> <b>File Name</b> <br> <br>
+        <input type="file" name="sampleFile" required/> <b>File</b> <br> <br>
+        <input type="submit" value="Update Report">  <br>
+			<%=success%>
+		</main>
+		<a class="button"href="/lab" style="position:absolute; bottom:50px; left:50px;">Go Back</a>
+</body>
+</html>

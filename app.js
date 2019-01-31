@@ -28,11 +28,13 @@ const adminRoutes = require("./routes/admin");
 const patientRoutes = require("./routes/patient");
 const doctorRoutes = require("./routes/doctor");
 const pharmacyRoutes = require("./routes/pharmacy");
+const labRoutes = require("./routes/lab");
 app.use("/",indexRoutes);
 app.use("/admin",adminRoutes);
 app.use("/patient",patientRoutes);
 app.use("/doctor",doctorRoutes);
 app.use("/pharmacy",pharmacyRoutes);
+app.use("/lab",labRoutes);
 
 app.listen(3000,()=>{
     console.log("Server started");

@@ -242,7 +242,7 @@
 	<aside class="main-sidebar one-fourth column">
 		<section class="patient-info">
 			<img class="profile-img" alt="User profile image"
-			  src="https://img.icons8.com/color/50/000000/circled-user-male-skin-type-6.png">
+			  src="/images/userpic.png">
 			<section class="details">
 				<h2>	<%= data.patient.name %></h2>
 			</section>
@@ -253,8 +253,8 @@
 				<li><a href="/doctor/update_health_status/<%= data.param %>" class="nav-link"><i class="fas fa-heartbeat"></i>Update Health Status</a></li>
 				<li><a href="/doctor/diagnosis/<%= data.param %>" class="nav-link"><i class="fas fa-stethoscope"></i>Diagnosis</a></li>
 				<li><a href="/doctor/update_medication/<%= data.param %>" class="nav-link"><i class="fas fa-pills"></i>Prescribe Medicines </a></li>
-				<li><a href="/doctor/update_labtests/<%= data.param %>" class="nav-link"><i class="fas fa-flask"></i> Update Lab Reports</a></li>
 				<li><a href="/doctor/add_appointment/<%= data.param %>" class="nav-link"><i class="fas fa-notes-medical"></i> Add Appointment</a></li>
+				<li><a href="/doctor" class="nav-link"><i class="fas fa-search"></i> Search for New Patient</a></li>
 				<li><a href="/doctor/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
 			</ul>
 		</nav>

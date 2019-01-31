@@ -74,6 +74,8 @@ h2 {
 }
 form p { margin-top: 2em; }
 form p:first-of-type { margin-top: 3em; }
+.forgot-pwd { color: #fff; }
+.forgot-pwd { color: #eee; }
 
 input[type="radio"] {
 	width:10%;

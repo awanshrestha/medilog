@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/css/framazeing.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
+	<title>Hospital Lab</title>
+</head>
+<body>
+	<h2>Lab</h2>
+		<h5>Enter the patient id below:</h5>
+		<form action="/lab/search" method="POST">
+			<input type="text" name="searchId" placeholder=" Patient Id"> <br> <br> <br>
+			<input type="submit">
+		</form>
+		<div id="searchResults">
+			<% if (searchResults.length > 0){ %>
+				<br>
+			<a href="/lab/update_labtests/<%= searchResults[0].patient_id %>"><%=searchResults[0].name%></a>
+			<% }%>
+			<% if (searchResults.length == 0){ %>
+				<br>
+				<span><%=notFound	%></span>
+				<%}%>
+		</div>
+</body>
+</html>
